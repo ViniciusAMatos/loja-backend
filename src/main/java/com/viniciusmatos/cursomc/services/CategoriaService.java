@@ -1,5 +1,6 @@
 package com.viniciusmatos.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.viniciusmatos.cursomc.services.exceptions.DataIntegrityException;
@@ -41,5 +42,9 @@ public class CategoriaService {
             throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
         }
 
+    }
+
+    public List<Categoria> findAll(){
+        return repo.findAll();
     }
 }
