@@ -4,6 +4,7 @@ package com.viniciusmatos.cursomc.resources;
 import com.viniciusmatos.cursomc.dto.CategoriaDTO;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,6 +67,20 @@ public class CategoriaResource {
 
         return ResponseEntity.ok().body(listObjDto);
     }
+
+    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoriaDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
+        Page<Categoria> listObj = service.findPage(page,linesPerPage,orderBy,direction);
+        Page<CategoriaDTO> listObjDto = listObj.map(obj -> new CategoriaDTO(obj));
+
+        return ResponseEntity.ok().body(listObjDto);
+    }
+
+
 
 
 
