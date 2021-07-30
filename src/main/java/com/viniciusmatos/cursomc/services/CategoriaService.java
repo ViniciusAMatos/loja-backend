@@ -1,9 +1,10 @@
 package com.viniciusmatos.cursomc.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.viniciusmatos.cursomc.domain.Categoria;
+import com.viniciusmatos.cursomc.dto.CategoriaDTO;
+import com.viniciusmatos.cursomc.repositories.CategoriaRepository;
 import com.viniciusmatos.cursomc.services.exceptions.DataIntegrityException;
+import com.viniciusmatos.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -11,9 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.viniciusmatos.cursomc.domain.Categoria;
-import com.viniciusmatos.cursomc.repositories.CategoriaRepository;
-import com.viniciusmatos.cursomc.services.exceptions.ObjectNotFoundException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -55,5 +55,9 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),
                 orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDto(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
