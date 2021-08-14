@@ -1,7 +1,7 @@
 package com.viniciusmatos.cursomc.services;
 
 import com.viniciusmatos.cursomc.domain.Categoria;
-import com.viniciusmatos.cursomc.dto.CategoriaDTO;
+import com.viniciusmatos.cursomc.dto.CategoriaDto;
 import com.viniciusmatos.cursomc.repositories.CategoriaRepository;
 import com.viniciusmatos.cursomc.services.exceptions.DataIntegrityException;
 import com.viniciusmatos.cursomc.services.exceptions.ObjectNotFoundException;
@@ -58,7 +58,7 @@ public class CategoriaService {
         return repo.findAll(pageRequest);
     }
 
-    public Categoria fromDto(CategoriaDTO objDto){
+    public Categoria fromDto(CategoriaDto objDto){
         return new Categoria(objDto.getId(), objDto.getNome());
     }
 
