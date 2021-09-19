@@ -1,6 +1,9 @@
 package com.viniciusmatos.cursomc.config;
 
 import com.viniciusmatos.cursomc.services.DBService;
+import com.viniciusmatos.cursomc.services.EmailService;
+import com.viniciusmatos.cursomc.services.MockEmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,5 +23,10 @@ public class TestConfig {
         dbService.instantiateTestDatabase();
 
         return  true;
+    }
+    
+    @Bean
+    public EmailService emailService() {
+    	return new MockEmailService();
     }
 }
