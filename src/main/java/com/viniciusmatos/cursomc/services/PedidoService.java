@@ -1,5 +1,13 @@
 package com.viniciusmatos.cursomc.services;
 
+import java.util.Date;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.viniciusmatos.cursomc.domain.ItemPedido;
 import com.viniciusmatos.cursomc.domain.PagamentoComBoleto;
 import com.viniciusmatos.cursomc.domain.Pedido;
@@ -8,13 +16,6 @@ import com.viniciusmatos.cursomc.repositories.ItemPedidoRepository;
 import com.viniciusmatos.cursomc.repositories.PagamentoRepository;
 import com.viniciusmatos.cursomc.repositories.PedidoRepository;
 import com.viniciusmatos.cursomc.services.exceptions.ObjectNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 @Service
 public class PedidoService {
@@ -69,7 +70,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
     }
 }

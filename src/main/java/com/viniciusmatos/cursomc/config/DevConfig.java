@@ -1,6 +1,9 @@
 package com.viniciusmatos.cursomc.config;
 
 import com.viniciusmatos.cursomc.services.DBService;
+import com.viniciusmatos.cursomc.services.EmailService;
+import com.viniciusmatos.cursomc.services.SmtpEmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +32,10 @@ public class DevConfig {
 
 
         return  true;
+    }
+    
+    @Bean
+    public EmailService emailService() {
+    	return new SmtpEmailService();
     }
 }
